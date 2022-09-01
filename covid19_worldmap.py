@@ -1,14 +1,20 @@
 import json
+import pandas as pd
 import pygal.maps.world
 from pygal.maps.world import COUNTRIES
 
-path = 'covid19_daily.json'
+url = 'https://github.com/owid/covid-19-data/blob/master/public/data/latest/owid-covid-latest.json'
 
-with open(path) as file:
-    covid = json.load(file)
+covid19 = pd.read_html(url)
+
+file = json.loads(covid19[0][1].values.tolist()[0])
+
 data = {}
-for code, info in covid.items():
+date = []
+
+for code, info in file.items():
     data.update(dict(zip([info["location"]], [info["new_cases"]])))
+    date.append(info['last_updated_date'])
 
 '''def getcountrycode(country):
     for refcode, refname in COUNTRIES.items():
@@ -29,7 +35,8 @@ for country, new_cases in data.items():
             if countrycode != None:
                 value[countrycode] = new_cases
 
+title = "Daily Cases for covid 19 over the world, updated on "+ str(max(date)[:10])
 worldmap = pygal.maps.world.World()
-worldmap.title = "Daily Cases for covid 19 over the world"
-worldmap.add("New cases", value)
+worldmap.title = title
+worldmap.add( "New cases", value)
 worldmap.render_to_file('covid19.svg')
