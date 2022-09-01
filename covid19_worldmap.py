@@ -3,7 +3,7 @@ import pandas as pd
 import pygal.maps.world
 from pygal.maps.world import COUNTRIES
 
-url = 'https://github.com/owid/covid-19-data/blob/0bc7d32215745ef5122cb11ff6adb30a63907b34/public/data/latest/owid-covid-latest.json'
+url = 'https://github.com/owid/covid-19-data/blob/master/public/data/latest/owid-covid-latest.json'
 
 covid19 = pd.read_html(url)
 
