@@ -16,17 +16,7 @@ for code, info in file.items():
     data.update(dict(zip([info["location"]], [info["new_cases"]])))
     date.append(info['last_updated_date'])
 
-'''def getcountrycode(country):
-    for refcode, refname in COUNTRIES.items():
-        if refname == country:
-            return refcode
-    return None
-'''
 value = {}
-'''for country, new_cases in data.items():
-    countrycode = getcountrycode(country)
-    if countrycode != None:
-        value[countrycode] = new_cases'''
 
 for country, new_cases in data.items():
     for refcode, refname in COUNTRIES.items():
