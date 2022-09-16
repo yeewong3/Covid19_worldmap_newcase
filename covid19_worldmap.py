@@ -20,23 +20,3 @@ worldmap = pygal.maps.world.World()
 worldmap.title = title
 worldmap.add( "New cases", value)
 worldmap.render_to_file('covid19.svg')
-
-'''
-data = {}
-date = []
-
-for code, info in file.items():
-    data.update(dict(zip([info["location"]], [info["new_cases"]])))
-    date.append(info['last_updated_date'])
-
-value = {}
-
-for country, new_cases in data.items():
-    for refcode, refname in COUNTRIES.items():
-        if refname == country:
-            countrycode = refcode
-            if countrycode != None:
-                value[countrycode] = new_cases
-
-
-'''
